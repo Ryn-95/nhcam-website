@@ -100,7 +100,6 @@ const SlideContent: React.FC<SlideContentProps> = ({
           transition: 'transform 2s ease-out'
         }}
         preload="auto"
-        quality="2160p"
       />
       
       {/* Overlay amélioré avec gradient plus subtil */}
