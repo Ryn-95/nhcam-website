@@ -415,7 +415,7 @@ const ServicesPage = () => {
                 Processus Créatif
               </h2>
               <p className="font-inter font-[200] text-base text-white/50 max-w-2xl mx-auto leading-relaxed">
-                Une approche méthodique et collaborative pour garantir l'excellence de chaque projet
+                Une approche méthodique et collaborative pour garantir l&apos;excellence de chaque projet
               </p>
             </div>
 
@@ -505,7 +505,7 @@ const ServicesPage = () => {
                   Prêt à donner vie à votre projet ?
                 </h2>
                 <p className="font-inter font-[200] text-base text-white/60 max-w-2xl mx-auto leading-relaxed">
-                  Discutons de vos besoins et créons ensemble quelque chose d'exceptionnel
+                  Discutons de vos besoins et créons ensemble quelque chose d&apos;exceptionnel
                 </p>
                 
                 {/* CTA Button */}

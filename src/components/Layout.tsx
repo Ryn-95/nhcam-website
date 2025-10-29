@@ -304,7 +304,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   className="mb-4 lg:mb-6 opacity-90"
                 />
                 <p className="font-inter font-[200] text-sm text-white/50 leading-relaxed max-w-md">
-                  Direction artistique et production vidéo. Création d'univers visuels 
+                  Direction artistique et production vidéo. Création d&apos;univers visuels 
                   authentiques et narratifs contemporains.
                 </p>
               </div>
