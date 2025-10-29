@@ -122,27 +122,27 @@ const SlideContent: React.FC<SlideContentProps> = ({
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-70" />
 
       {/* Contenu textuel avec animations optimisées */}
-      <div className="absolute inset-x-0 bottom-32 z-20">
-        <div className="max-w-[1800px] mx-auto px-8 lg:px-12">
-          <div className="flex flex-col items-start space-y-8">
+      <div className="absolute inset-x-0 bottom-20 sm:bottom-24 md:bottom-32 z-20">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="flex flex-col items-start space-y-4 sm:space-y-6 md:space-y-8">
             <div 
-              className="flex items-center space-x-4 transform transition-all duration-1000"
+              className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 transform transition-all duration-1000"
               style={{
                 opacity: isActive ? 1 : 0,
                 transform: isActive ? 'translateY(0)' : 'translateY(20px)',
               }}
             >
-              <span className="font-syne text-8xl text-white/10 leading-none">
+              <span className="font-syne text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-white/10 leading-none">
                 {String(slide.id).padStart(2, '0')}
               </span>
-              <div className="w-[1px] h-16 bg-white/10" />
-              <span className="text-sm tracking-[0.4em] uppercase text-white/60 font-light">
+              <div className="w-[1px] h-8 sm:h-10 md:h-12 lg:h-16 bg-white/10" />
+              <span className="text-[0.6rem] sm:text-xs md:text-sm tracking-[0.3em] sm:tracking-[0.4em] uppercase text-white/60 font-light">
                 {slide.category}
               </span>
             </div>
 
             <h1 
-              className="font-syne font-[100] text-7xl lg:text-9xl text-white leading-[0.9] tracking-tight max-w-4xl"
+              className="font-syne font-[100] text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-9xl text-white leading-[0.9] tracking-tight max-w-4xl"
               style={{
                 transform: isActive ? 'translateY(0)' : 'translateY(40px)',
                 opacity: isActive ? 1 : 0,
@@ -156,8 +156,8 @@ const SlideContent: React.FC<SlideContentProps> = ({
       </div>
 
       {/* Navigation épurée */}
-      <div className="fixed bottom-12 right-12 z-30">
-        <div className="flex items-center space-x-8 bg-black/20 backdrop-blur-md rounded-full px-8 py-4">
+      <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 md:bottom-12 md:right-12 z-30">
+        <div className="flex items-center space-x-3 sm:space-x-5 md:space-x-8 bg-black/20 backdrop-blur-md rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4">
           {/* Bouton précédent */}
           <button
             onClick={() => onSlideChange(activeIndex > 0 ? activeIndex - 1 : slides.length - 1)}
@@ -175,15 +175,15 @@ const SlideContent: React.FC<SlideContentProps> = ({
             </svg>
           </button>
 
-          {/* Indicateurs de progression */}
-          <div className="flex space-x-6">
+          {/* Indicateurs de progression - caché sur mobile */}
+          <div className="hidden sm:flex space-x-3 md:space-x-6">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => onSlideChange(index)}
                 className="relative group"
               >
-                <div className="w-12 h-[1px] bg-white/10 transition-all duration-700" />
+                <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-white/10 transition-all duration-700" />
                 <div 
                   className="absolute top-0 left-0 h-[1px] bg-white/70 transition-all duration-700"
                   style={{
@@ -197,6 +197,11 @@ const SlideContent: React.FC<SlideContentProps> = ({
                 </div>
               </button>
             ))}
+          </div>
+
+          {/* Indicateur mobile simple */}
+          <div className="sm:hidden text-white/60 text-xs font-light">
+            {String(activeIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
           </div>
 
           {/* Bouton suivant */}
@@ -216,10 +221,10 @@ const SlideContent: React.FC<SlideContentProps> = ({
             </svg>
           </button>
 
-          {/* Bouton Play/Pause */}
+          {/* Bouton Play/Pause - caché sur mobile */}
           <button
             onClick={onPlayPauseToggle}
-            className="group relative px-4 py-2 overflow-hidden border-l border-white/10 ml-4 pl-8"
+            className="hidden md:block group relative px-4 py-2 overflow-hidden border-l border-white/10 ml-4 pl-8"
           >
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-500 rounded-full" />
             {isAutoplayEnabled ? (
@@ -330,14 +335,14 @@ const HeaderSlider: React.FC = () => {
         ))}
       </Swiper>
 
-      {/* Grands boutons de navigation sur les côtés */}
+      {/* Grands boutons de navigation sur les côtés - caché sur mobile */}
       <button 
         onClick={() => swiperRef.current?.slidePrev()}
-        className="absolute left-8 top-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
-        <div className="p-6 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/30 transition-all duration-300">
+        <div className="p-3 sm:p-4 md:p-6 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/30 transition-all duration-300">
           <svg 
-            className="w-8 h-8 text-white/70" 
+            className="w-5 h-5 md:w-8 md:h-8 text-white/70" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -350,11 +355,11 @@ const HeaderSlider: React.FC = () => {
 
       <button 
         onClick={() => swiperRef.current?.slideNext()}
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
-        <div className="p-6 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/30 transition-all duration-300">
+        <div className="p-3 sm:p-4 md:p-6 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/30 transition-all duration-300">
           <svg 
-            className="w-8 h-8 text-white/70" 
+            className="w-5 h-5 md:w-8 md:h-8 text-white/70" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -365,8 +370,8 @@ const HeaderSlider: React.FC = () => {
         </div>
       </button>
 
-      {/* Social Links avec design épuré */}
-      <div className="fixed left-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-8 z-50 mix-blend-difference">
+      {/* Social Links avec design épuré - caché sur mobile */}
+      <div className="hidden md:flex fixed left-4 md:left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-4 md:gap-8 z-50 mix-blend-difference">
         <div className="w-[0.5px] h-16 bg-white/10" />
         <div className="flex flex-col gap-6">
           {[
