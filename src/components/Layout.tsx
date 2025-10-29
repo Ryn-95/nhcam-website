@@ -147,29 +147,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             {/* Bouton menu mobile ultra design */}
             <button 
               onClick={toggleMobileMenu}
-              className="lg:hidden group relative p-4 z-50 bg-black/60 backdrop-blur-md rounded-xl border border-white/20 hover:bg-black/80 hover:border-white/40 transition-all duration-300 shadow-lg"
+              className="lg:hidden relative p-3 z-[100] bg-white/10 backdrop-blur-md rounded-lg border border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 mix-blend-screen"
               aria-label="Menu"
-              style={{ minWidth: '48px', minHeight: '48px' }}
             >
-              <div className="relative w-6 h-6 flex items-center justify-center">
-                {/* Lignes du hamburger avec animation sophistiquée */}
-                <div className="absolute inset-0 flex flex-col justify-center space-y-2">
-                  <div className={`w-6 h-[2px] bg-white rounded-full transition-all duration-500 origin-center ${
-                    isMobileMenuOpen ? 'rotate-45 translate-y-[4px]' : 'group-hover:bg-white/90'
-                  }`} />
-                  <div className={`w-5 h-[2px] bg-white rounded-full transition-all duration-500 ${
-                    isMobileMenuOpen ? 'opacity-0 scale-0' : 'group-hover:bg-white/90 group-hover:w-6'
-                  }`} />
-                  <div className={`w-6 h-[2px] bg-white rounded-full transition-all duration-500 origin-center ${
-                    isMobileMenuOpen ? '-rotate-45 -translate-y-[4px]' : 'group-hover:bg-white/90'
-                  }`} />
-                </div>
-                
-                {/* Cercle de background au hover */}
-                <div className="absolute inset-0 rounded-xl bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-300" />
-                
-                {/* Indicateur visuel supplémentaire */}
-                <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative w-6 h-5 flex flex-col justify-between">
+                {/* Lignes du hamburger avec animation */}
+                <span className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
+                  isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                }`} />
+                <span className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-0' : ''
+                }`} />
+                <span className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
+                  isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                }`} />
               </div>
             </button>
           </div>
