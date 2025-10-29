@@ -84,22 +84,38 @@ const SlideContent: React.FC<SlideContentProps> = ({
   onSlideChange,
   onPlayPauseToggle
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      if (isActive) {
+        video.play().catch(err => console.log('Lecture vidéo:', err));
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+  }, [isActive]);
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Vidéo en arrière-plan avec optimisation des performances */}
       <video
+        ref={videoRef}
         src={slide.video}
-        className="absolute inset-0 w-full h-full object-cover transform scale-105 transition-transform duration-[2s]"
-        autoPlay
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay={isActive}
         loop
         muted
         playsInline
         style={{ 
           objectFit: 'cover',
           transform: isActive ? 'scale(1)' : 'scale(1.05)',
-          transition: 'transform 2s ease-out'
+          transition: 'transform 2s ease-out',
+          opacity: isActive ? 1 : 0.7
         }}
-        preload="auto"
+        preload="metadata"
       />
       
       {/* Overlay amélioré avec gradient plus subtil */}
@@ -280,12 +296,15 @@ const HeaderSlider: React.FC = () => {
           crossFade: true
         }}
         autoplay={{
-          delay: 4000,
+          delay: 5000,
           disableOnInteraction: false,
-          pauseOnMouseEnter: true
+          pauseOnMouseEnter: false
         }}
         loop={true}
-        speed={1200}
+        speed={800}
+        allowTouchMove={true}
+        simulateTouch={true}
+        grabCursor={true}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
@@ -296,15 +315,17 @@ const HeaderSlider: React.FC = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <SlideContent 
-              slide={slide} 
-              isActive={index === activeIndex}
-              activeIndex={activeIndex}
-              currentIndex={index}
-              isAutoplayEnabled={isAutoplayEnabled}
-              onSlideChange={handleSlideChange}
-              onPlayPauseToggle={handlePlayPauseToggle}
-            />
+            {({ isActive }) => (
+              <SlideContent 
+                slide={slide} 
+                isActive={isActive}
+                activeIndex={activeIndex}
+                currentIndex={index}
+                isAutoplayEnabled={isAutoplayEnabled}
+                onSlideChange={handleSlideChange}
+                onPlayPauseToggle={handlePlayPauseToggle}
+              />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
