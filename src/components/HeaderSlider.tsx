@@ -31,7 +31,7 @@ const slides: Slide[] = [
     backgroundGradient: 'from-orange-900/20 via-black to-black',
     color: '#FFB454',
     category: 'Créatif',
-    video: '/videos/BIGJIVF.mp4'
+    video: '/videos/video1.mp4'
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const slides: Slide[] = [
     backgroundGradient: 'from-purple-900/20 via-black to-black',
     color: '#8B5CF6',
     category: 'Production',
-    video: '/videos/Couchersoleil.mp4'
+    video: '/videos/video2.mp4'
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ const slides: Slide[] = [
     backgroundGradient: 'from-cyan-900/20 via-black to-black',
     color: '#06B6D4',
     category: 'Événement',
-    video: '/videos/Gradur.mp4'
+    video: '/videos/video3.mp4'
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ const slides: Slide[] = [
     backgroundGradient: 'from-emerald-900/20 via-black to-black',
     color: '#10B981',
     category: 'Portrait',
-    video: '/videos/impulstarvF.mp4'
+    video: '/videos/video4.mp4'
   }
 ];
 
